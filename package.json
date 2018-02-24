@@ -1,0 +1,36 @@
+{
+  "name": "tidbit_amp_converter",
+  "version": "1.0.0",
+  "description": "Coverter from HTML to AMP (replaces Notitia Converter)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node bin/dev",
+    "clean": "rm -rf dist",
+    "build": "npm run clean && mkdir dist && babel src -s -d dist",
+    "production": "npm run build && node bin/production",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mmadde10/Tidbit_AMP_Converter.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mmadde10/Tidbit_AMP_Converter/issues"
+  },
+  "homepage": "https://github.com/mmadde10/Tidbit_AMP_Converter#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-jest": "^21.2.0",
+    "babel-preset-env": "^1.6.1",
+    "jest": "^21.2.1",
+    "regenerator-runtime": "^0.11.0",
+    "webpack": "^3.8.1"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "moment": "^2.19.2"
+  }
+}
