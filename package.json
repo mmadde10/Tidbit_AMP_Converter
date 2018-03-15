@@ -30,6 +30,7 @@
     "webpack": "^3.8.1"
   },
   "dependencies": {
+    "amphtml-validator": "^1.0.23",
     "cheerio": "^1.0.0-rc.2",
     "moment": "^2.19.2"
   }

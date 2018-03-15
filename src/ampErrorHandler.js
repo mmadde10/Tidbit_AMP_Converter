@@ -1,7 +1,7 @@
 'use strict';
 var validationErrors = require('../validator/validationErrors');
-var amp = require('../src/ampDocument');
 
-function handleErrors(validationResult,Content){
-    
+function handleErrors(content,ampMessage){
+        console.log(ampMessage);
 }
+module.exports = handleErrors;

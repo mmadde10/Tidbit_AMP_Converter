@@ -1,12 +1,12 @@
 'use strict';
-import * as cheerio from 'cheerio';
+
 import * as document from 'document';
 
 let $ = document.loadDocument(contents);
 
  function replaceImageTags($){
     $('body').find('img').each(function(index, element){
-        let element = element.attribs;
+        element = element.attribs;
         let src = String(element.src);
         let content = $(this).html();
         let ampIMG = `<amp-img src = ${src}  width = 16  height = 9 layout= "responsive">  ${content} </amp-img>`;
