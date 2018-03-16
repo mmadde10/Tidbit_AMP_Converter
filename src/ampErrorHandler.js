@@ -1,9 +1,16 @@
 'use strict';
 var validationErrors = require('../validator/validationErrors');
 
-function handleErrors(content,ampMessage){
-        console.log(ampMessage);
-        //check to see if incoming error is in json
-        //if match, do fix
+function handleErrors(ampMessage){
+        let tagMissing = validationErrors.mandatoryTagMissing;
+        if(ampMessage === tagMissing.ampTag){
+                addTag();
+                console.log("Found");
+                console.log(tagMissing.ampTag);
+
+        }
+        else{
+                console.log("Not Found");
+        }
 }
 module.exports = handleErrors;

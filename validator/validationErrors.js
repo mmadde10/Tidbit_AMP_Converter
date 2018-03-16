@@ -1,17 +1,17 @@
 const validationErrors = {
-    dissallowedHTML:{
-        Doctype:"The parent tag of tag \"html ⚡ for top-level html\" is \"$root\", but it can only be \"!doctype\".",
-        BodyTag:"Tag or text which is only allowed inside the body section found outside of the body section."
+    dissallowedHTML: {
+        Doctype:'The parent tag of tag html "⚡" for top-level html" is "$root", but it can only be "!doctype".',
+        BodyTag:'Tag or text which is only allowed inside the body section found outside of the body section.'
     },
     mandatoryTagMissing: {
-        Doctype:"The mandatory tag \"html doctype\" is missing or incorrect.",
-        Head:  "The mandatory tag \"head\" is missing or incorrect.",
-        Canonical: "The mandatory tag \"link rel=canonical\" is missing or incorrect.",
-        Charset: "The mandatory tag \"meta charset=utf-8\" is missing or incorrect.",
-        viewport:"The mandatory tag \"meta name=viewport\" is missing or incorrect.",
-        ampScript:"The mandatory tag \"amphtml engine v0.js script\" is missing or incorrect.",
-        ampBoilerPlate: "The mandatory tag \"noscript enclosure for boilerplate\" is missing or incorrect.",
-        ampTag:"The mandatory attribute \"⚡\" is missing in tag \"html ⚡ for top-level html\"."
+        Doctype:'The mandatory tag "html doctype" is missing or incorrect.',
+        Head: 'The mandatory tag "head" is missing or incorrect.',
+        Canonical: 'The mandatory tag "link rel=canonical" is missing or incorrect.',
+        Charset: 'The mandatory tag "meta charset=utf-8" is missing or incorrect.',
+        viewport:'The mandatory tag "meta name=viewport" is missing or incorrect.',
+        ampScript:'The mandatory tag "amphtml engine v0.js script" is missing or incorrect.',
+        ampBoilerPlate: 'The mandatory tag "noscript enclosure for boilerplate" is missing or incorrect.',
+        ampTag: `The mandatory attribute '⚡' is missing in tag 'html ⚡ for top-level html'.`
     },
     stylesheet:{
         length:"STYLESHEET_TOO_LONG",
