@@ -1,0 +1,58 @@
+var jest = require('jest');
+var tidbit = require('../index');
+
+let contents = `<!doctype html>
+<html lang="en">
+  <head>
+    <title>News Article</title>
+    <style>
+        p{
+          font-family: helvetica;
+        }
+        img{
+          width: 10;
+          height: 10;
+        }
+        h5{
+          font-family: helvetica;
+        }
+        h3{
+          font-family: helvetica;
+        }
+    </style>
+        <link href="base.css" rel="stylesheet" />
+        <script type="text/javascript" src="base.js"></script>
+  </head>
+  <body>
+        <table>
+            <tr>
+                <td class="grHighlight" style="padding-left: 6px;">lorum ipsum</td>
+                <td class="grHighlight" style="padding-left: 6px; text-align: center;">lorum</td>
+                <td class="grHighlight" style="padding-left: 6px; text-align: center;">12</td>
+                <td class="grHighlight" style="padding-left: 6px; text-align: center;">33</td>
+            </tr>
+        </table>
+        <p>In id ullamcorper risus, in sagittis sem. Donec consectetur sapien ac ex eleifend 
+        rhoncus a id libero. Suspendisse potenti. Curabitur ligula felis, accumsan dignissim 
+        sapien et, lacinia vulputate risus. Donec ornare, est ac pretium fringilla, nisi est 
+        laoreet libero, id porta odio nunc suscipit velit. Sed augue urna, lacinia id semper vitae, 
+        rhoncus quis augue. Nunc velit neque, lobortis eget sagittis nec, sollicitudin at nunc. Nullam 
+        placerat eu erat eu porta. Orci varius natoque penatibus et magnis dis parturient montes, nascetur 
+        ridiculus mus. Maecenas lectus risus, posuere vitae leo vitae, imperdiet faucibus ante. Cras ac 
+        faucibus augue.</p>
+        <video width="320" height="240" controls>
+        <source src="movie.mp4" type="video/mp4">
+        <source src="movie.ogg" type="video/ogg">
+        Your browser does not support the video tag.
+        </video>
+    </body>
+</html>`;
+
+
+describe('Index Page returns result', () => {
+    test('Main Project AMP', () => {
+        let ampPage = tidbit(contents);
+        console.log("finish HTML:\n",ampPage);
+        expect(ampPage).not.toBeNull();
+    });
+});
