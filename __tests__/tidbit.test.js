@@ -52,7 +52,6 @@ let contents = `<!doctype html>
 describe('Index Page returns result', () => {
     test('Main Project AMP', () => {
         let ampPage = tidbit(contents);
-        console.log("finish HTML:\n",ampPage);
         expect(ampPage).not.toBeNull();
     });
 });

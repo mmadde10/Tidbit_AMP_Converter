@@ -1,12 +1,11 @@
 'use strict';
 import * as cheerio from 'cheerio';
 import * as main from '../index';
-import requiredTags from '../assets/ampTags'
 
 function checkForRequiredTags($){
     for (var key in requiredTags) {
         if(!$(requiredTags[key]).length){
-            if($(requiredTags[key]).html() === '<html ⚡ lang="en">'){
+            if(requiredTags[key] === `<html ⚡ lang="en">`){
                 handleHTMLTags($,requiredTags[key]);  
             }
             else{
@@ -18,8 +17,8 @@ function checkForRequiredTags($){
 }
 
 function handleHTMLTags($,Tag){
-    if($('html').length){
-        $('html').replacewith(Tag);
+    if($.html().length){
+       let tml =  $.html();
     }
     $('html').prepend(Tag);
 }
@@ -32,4 +31,4 @@ function handleAMPComponents($,tag){
     });
 }
 
-module.exports = checkForRequiredTags, handleAMPComponents;
+module.exports = {checkForRequiredTags, handleAMPComponents};

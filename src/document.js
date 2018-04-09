@@ -3,6 +3,6 @@ import * as cheerio from 'cheerio';
 
 
 export function loadDocument (contents){
-    $ = cheerio.load(contents);
+   let $ = cheerio.load(contents);
     return $;
 }
