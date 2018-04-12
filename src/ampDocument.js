@@ -1,34 +1,19 @@
 'use strict';
 import * as cheerio from 'cheerio';
-import * as main from '../index';
+const head = require('./ampHead');
+const body = require('./ampBody');
+const style = require('./style');
 
-function checkForRequiredTags($){
-    for (var key in requiredTags) {
-        if(!$(requiredTags[key]).length){
-            if(requiredTags[key] === `<html ⚡ lang="en">`){
-                handleHTMLTags($,requiredTags[key]);  
-            }
-            else{
-                $('head').append(requiredTags[key]);
-            }
-        }  
-    }
-    return $('html').html();
+export function createHead($){
+    head.handleHTMLTags($);
 }
 
-function handleHTMLTags($,Tag){
-    if($.html().length){
-       let tml =  $.html();
-    }
-    $('html').prepend(Tag);
+export function validateBody($){
+    body.handleAMPTags($);
+    body.handleScripting($);
 }
-
-function handleAMPComponents($,tag){
-    $(`${tag}`).each(function(index, element){
-        let attribs = element.attribs;
-        let content = $(this).html();
-        $(this).replacewith(`<amp-${tag} ${attribs}>${content}</amp-${tag}>`);
-    });
+export function validateStyleTags($){
+    style.removeDisallowedStyles($);
+    style.validateStyle($);
+    style.removeExternalStyles($);
 }
-
-module.exports = {checkForRequiredTags, handleAMPComponents};

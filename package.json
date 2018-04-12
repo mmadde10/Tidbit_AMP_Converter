@@ -2,7 +2,7 @@
   "name": "tidbit_amp_converter",
   "version": "1.0.0",
   "description": "Coverter from HTML to AMP (replaces Notitia Converter)",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "scripts": {
     "start": "node bin/dev",
     "clean": "rm -rf dist",

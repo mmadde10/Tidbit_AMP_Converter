@@ -1,40 +1,34 @@
 'use strict';
 import * as cheerio from 'cheerio';
 import amphtmlValidator from 'amphtml-validator';
-import {checkForRequiredTags, handleAMPComponents} from "./src/ampDocument";
-import * as document from './src/document'
+import {createHead, validateBody,validateStyleTags} from "./src/ampDocument";
+import * as loader from './src/helpers/loaders_and_checkers'
 
 
 function tidbitConverter(content){
+    let ampHTML;
+    if(!content){
+      return null;
+    }
+    let $ = loader.loadDocument(content);
+    createHead($);
+    validateBody($);
+    validateStyleTags($);
+    ampHTML = `<!doctype html><html amp lang="en">${$('html').html()}</html>`;
+    return ampHTML;  
+}
+function tidbitBody(content){
   let ampHTML;
+
   if(!content){
     return null;
   }
 
-
-
-  amphtmlValidator.getInstance().then(function (validator) {
-    var result = validator.validateString(content);
-    console.log(result);
-    if(result.status === 'PASS'){
-      console.log(result.status);
-    }
-
-    else{
-      for (var i in result.errors){
-        var error = result.errors[i];
-        var msg = 'line ' + error.line + ', col ' + error.col + ': ' + error.message;
-        ((error.severity === 'ERROR') ? console.error : console.warn)(msg);
-      }
-    }
-  });
-
-  let $ = document.loadDocument(content);
-  $ = checkForRequiredTags($);
-  //for tags
-    //handleAMPComponents($,tag)
-  //}
-
-    return null;
+  let $ = loader.loadDocument(content);
+  validateBody($);
+  validateStyleTags($);
+  ampHTML = $('body').html();
+  return `${ampHTML}`;
 }
-module.exports = tidbitConverter;
+
+module.exports = {tidbitConverter,tidbitBody};

@@ -1,30 +1,31 @@
 'use strict';
 import * as cheerio from 'cheerio';
 import * as main from '../index';
-import requiredTags from '../assets/ampTags';
-import * as sizeOf from 'object-sizeof';
+const styleRules = require('./ampRules/styleRules');
 
 
-
-function getStyle($){
-    let stylesObject = $('style').map(function(index, element){
-        return $(this).html();
-    }).get().join(' ');
-
-    if(sizeOf(stylesObject) < 50000){
-         return `<style amp-custom>${stylesObject}</style>`;
-    } 
-}
-
-function handleExternalStylesheet($){
-    $('link([rel="stylesheet")').each(function(index, element){
+export function removeDisallowedStyles($){
+    $('body').children('style').each(function(){
         $(this).remove();
     });
+    $("* [style]").removeAttr("style");
+    $("* [type]").removeAttr("type");
 }
-
-function handleInlineStyle($,stylesObject,tag){
-    $('[style]').each(function(index, attr){
-        $(this).removeAttr('style');
+export function validateStyle($){
+    let style = $('head').find('style:not([amp-boilerplate])');
+    let css = $(style).html();
+    let ampStyle = `<style amp-custom>${css}</style>`
+    $(style).replaceWith(ampStyle);
+}
+export function removeExternalStyles($){
+    let fonts = styleRules.externalStylesheet.attrs.value;
+    $('link[rel="stylesheet"]').each(function(index, element){
+        for(let value in fonts){
+            if($(this).attr(`[href=${fonts[value]}]`) !== undefined){
+                return true;
+            }
+        }
+        $(this).remove();   
     });
 }
-module.exports = getStyle, handleInlineStyle;
+
